@@ -60,9 +60,9 @@ yarn dev
 
 ## 🔐 Environment Variables
 
-VITE_WALLET_ORIGIN=https://wallet.dexbros.com  
+VITE_WALLET_ORIGIN=...
 VITE_BRIDGE_ADDRESS=0x...  
-VITE_BRIDGE_BASE_URL=https://api.dexbros.com  
+VITE_BRIDGE_BASE_URL=... 
 VITE_L2_BRIDGE_RPC=https://rpc.dexbros.com  
 VITE_L2_RPC=https://rpc.dexbros.com  
 VITE_L2_CHAIN_ID=220070  
