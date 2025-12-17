@@ -1,0 +1,128 @@
+@use "./variables" as *;
+
+.network-card-modern {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .badge {
+      background: #f3f4f6;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      color: #4b5563;
+    }
+  }
+
+  .card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+  }
+
+  .card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.1rem;
+
+    .label {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #6b7280;
+      font-weight: 600;
+      font-size: 0.85rem;
+      min-width: 140px;
+
+      svg {
+        color: #7c3aed;
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .value-block {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      word-break: break-word;
+      max-width: 100%;
+
+      .value {
+        font-size: 0.85rem;
+        color: #111;
+
+        &.link {
+          color: #7c3aed;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .copy-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 2px;
+        color: #6b7280;
+        font-size: 1rem;
+
+        &:hover {
+          color: #111;
+        }
+      }
+    }
+  }
+
+  .meta-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+
+    button {
+      flex: 1;
+      display: flex; // ✅ make button contents align properly
+      align-items: center; // ✅ center logo + text vertically
+      justify-content: center;
+      gap: 0.5rem; // ✅ spacing between logo and text
+
+      padding: 0.6rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      background: #f3f4f6;
+      color: #111;
+      cursor: pointer;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: #e5e7eb;
+      }
+
+      img.inline-logo {
+        width: 18px;
+        height: 18px;
+      }
+    }
+    .disabled-btn {
+      opacity: 0.5;
+    }
+  }
+}

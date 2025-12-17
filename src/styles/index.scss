@@ -1,0 +1,352 @@
+@use "./variables" as *;
+@use "./bridge" as *;
+@use "./token" as *;
+@use "./network" as *;
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  background: #f1f5f9;
+  color: #222;
+}
+
+b {
+  color: #3e6c9b;
+}
+
+.app-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: #f1f5f9;
+  padding: 1rem; // optional: prevents panel from touching edges on small screens
+  box-sizing: border-box;
+}
+
+.common-card {
+  background: $bg-base;
+  box-sizing: border-box;
+  max-width: 580px;
+  width: 100%;
+  padding: 1rem;
+  margin: 2rem auto;
+  border-radius: $border-radius;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+/* container & title */
+
+.history-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+/* tabs */
+.history-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.tab,
+.active {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 20px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 500;
+  border: 1px solid #ddd;
+}
+.tab {
+  background: #f4f4f4;
+  color: #555;
+}
+.active {
+  background: #fff;
+  color: #111;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* list items */
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.history-item:hover {
+  background: #f9f9f9;
+}
+
+/* left side of item */
+.history-item .left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.history-item .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #eef;
+  border-radius: 50%;
+  color: #446;
+  font-size: 18px;
+}
+.history-item .info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.history-item .info .title {
+  font-size: 16px;
+  font-weight: 600;
+}
+.history-item .info .badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 12px;
+  border-radius: 12px;
+}
+.history-item .info .badge.completed {
+  background: #e6f9e6;
+  color: #2a7f2a;
+}
+.history-item .info .badge.pending {
+  background: #fff4e6;
+  color: #b56b00;
+}
+
+/* right side of item */
+.history-item .right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.history-item .token-logo {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+}
+.history-item .amount {
+  font-weight: 600;
+}
+
+/* back button */
+.history-back-button {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: #555;
+  font-size: 14px;
+  text-decoration: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.history-back-button:hover {
+  text-decoration: underline;
+}
+
+/* details view */
+.details-amount {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+.details-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.details-status span {
+  color: #666;
+}
+.details-status strong {
+  font-weight: 600;
+}
+.details-pair {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+.details-pair div span {
+  display: block;
+  color: #666;
+  font-size: 14px;
+}
+.details-pair div strong {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* steps */
+.details-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.details-steps h4 {
+  margin: 0 0 4px;
+  font-size: 14px;
+  color: #333;
+}
+.details-steps p {
+  margin: 0 0 8px;
+  color: #444;
+}
+.details-steps a {
+  display: inline-block;
+  margin-right: 12px;
+  color: #3366cc;
+  font-size: 14px;
+  text-decoration: none;
+}
+.details-steps a:hover {
+  text-decoration: underline;
+}
+
+/**** history details**/
+.history-container {
+  max-width: 580px;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 480px;
+  padding: 16px;
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+  background: #fff;
+}
+
+.history-back-button {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: #555;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+.history-back-button:hover {
+  text-decoration: underline;
+}
+
+.details-amount {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 16px;
+  column-gap: 16px;
+}
+
+.details-row {
+  display: contents; /* so each label/value pair line up */
+}
+
+.details-label {
+  color: #666;
+  font-size: 14px;
+  align-self: center;
+}
+
+.details-value {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.status-dot.completed {
+  background-color: #34d399; /* green */
+}
+.status-dot.pending {
+  background-color: #fbbf24; /* amber */
+}
+
+/* network icons */
+.network-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* explorer button */
+.explorer-button {
+  grid-column: 2; /* force to right column */
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #111;
+}
+.explorer-button:hover {
+  background: #e5e7eb;
+}
+
+.history-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* this makes it fill the viewport minus any nav you have at top */
+  min-height: calc(100vh - 80px);
+}
+
+.spinner.large {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #e5e7eb;
+  border-top-color: #7c3aed; /* accent color */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
