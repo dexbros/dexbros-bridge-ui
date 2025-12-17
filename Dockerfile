@@ -15,7 +15,7 @@ RUN --mount=type=ssh \
     yarn install --frozen-lockfile
 
 # Pass build-time env vars if CRA / Vite needs them
-# COPY .env.development .env
+COPY .env.development .env
 
 # Copy the rest of the source tree
 COPY . .
